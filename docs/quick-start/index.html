@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="查看启动要求、基础运行方式和首次建议动作。" />
+    <meta name="keywords" content="TreeCore,TreeMC,我的世界核心,Minecraft 服务端核心,Minecraft server core,Paper,Folia,Paper 核心,Folia 核心,高性能 Minecraft,Web 管理面板,快速开始,入门,TreeCore 文档,TreeMC 文档" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="author" content="TreeMC-cloud" />
+    <meta name="theme-color" content="#6fb53d" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="TreeCore" />
+    <meta property="og:title" content="快速开始 | TreeCore 官方网站" />
+    <meta property="og:description" content="查看启动要求、基础运行方式和首次建议动作。" />
+    <meta property="og:url" content="https://treemc-cloud.github.io/docs/quick-start/" />
+    <meta property="og:image" content="https://treemc-cloud.github.io/images/console-preview.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="快速开始 | TreeCore 官方网站" />
+    <meta name="twitter:description" content="查看启动要求、基础运行方式和首次建议动作。" />
+    <meta name="twitter:image" content="https://treemc-cloud.github.io/images/console-preview.png" />
+    <link rel="canonical" href="https://treemc-cloud.github.io/docs/quick-start/" />
+    <title>快速开始 | TreeCore 官方网站</title>
+    <link rel="icon" href="/images/console-preview.png" />
+    <script>
+      ;(() => {
+        const { hash } = window.location
+        if (hash.startsWith('#/')) {
+          const target = hash.slice(1)
+          window.history.replaceState(null, '', target)
+        }
+      })()
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "TreeCore",
+        "alternateName": ["TreeMC", "TreeCore 官方网站"],
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Java 21+",
+        "url": "https://treemc-cloud.github.io/",
+        "description": "TreeCore 是面向我的世界 / Minecraft 服务器场景的高性能服务端核心，聚焦 Paper、Folia、Web 管理、诊断、资源包链路与技术文档。",
+        "keywords": "TreeCore, TreeMC, 我的世界核心, Minecraft 服务端核心, Paper, Folia",
+        "publisher": {
+          "@type": "Organization",
+          "name": "TreeMC-cloud"
+        }
+      }
+    </script>
+    <script type="module" crossorigin src="/assets/index-CR4xc3Xv.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BEBSowld.css">
+  </head>
+  <body>
+    <div id="app">
+    <div class="page-shell container seo-static-page">
+      <div class="doc-breadcrumb">
+        <a href="/docs/">文档首页</a>
+        <span>/</span>
+        <span>入门</span>
+      </div>
+      <header class="doc-header surface-card">
+        <div>
+          <span class="card-label">Getting Started</span>
+          <h1>快速开始</h1>
+          <p>查看启动要求、基础运行方式和首次建议动作。</p>
+        </div>
+        <div class="doc-meta">
+          <span>入门</span>
+          <span>3 分钟</span>
+        </div>
+      </header>
+      <article class="surface-card doc-article markdown-body"><h1>快速开始</h1>
+<h2>运行要求</h2>
+<ul>
+<li><strong>Minecraft</strong>：1.21.x</li>
+<li><strong>Java</strong>：21+</li>
+<li><strong>建议内存</strong>：8GB 起步</li>
+</ul>
+<hr>
+<h2>1. 下载</h2>
+<p>从公开仓库的 Releases 获取构建产物：</p>
+<ul>
+<li><a href="https://github.com/TreeMC-cloud/Tree/releases">Tree Releases</a></li>
+</ul>
+<p>常见文件名示例：</p>
+<ul>
+<li><code>treecore-paperclip.jar</code></li>
+</ul>
+<hr>
+<h2>2. 启动</h2>
+<pre><code class="language-bash">java -Xms8G -Xmx8G -jar treecore-paperclip.jar --nogui
+</code></pre>
+<p>首次启动后会自动生成：</p>
+<ul>
+<li><code>treecore.json</code></li>
+<li><code>treecore-web/</code>（运行时网页目录）</li>
+</ul>
+<p>如果端口未被占用，Web 面板默认监听：</p>
+<ul>
+<li><code>127.0.0.1:8080</code></li>
+</ul>
+<hr>
+<h2>3. 生成推荐启动脚本</h2>
+<p>启动后建议在游戏内执行：</p>
+<pre><code class="language-text">/tc startscript
+</code></pre>
+<p>它会在服务器目录生成：</p>
+<ul>
+<li><code>start.sh</code></li>
+<li><code>start.bat</code></li>
+</ul>
+<p>用于保存当前推荐的 JVM 启动参数。</p>
+<p>如果你只想查看参数而不生成脚本，可以使用：</p>
+<pre><code class="language-text">/tc jvmflags
+</code></pre>
+<hr>
+<h2>4. 首次检查建议</h2>
+<p>首次启动建议按下面顺序确认：</p>
+<ol>
+<li><code>/tc perf</code> 是否能正常输出性能状态</li>
+<li><code>/tc tpsbar</code> 是否能正常显示 BossBar</li>
+<li>本机浏览器是否能打开 <code>http://127.0.0.1:8080</code></li>
+<li><code>treecore.json</code> 是否已生成</li>
+</ol>
+<hr>
+<h2>5. 如果你准备正式上服</h2>
+<p>建议先做这些事：</p>
+<ul>
+<li>先在测试服验证关键插件</li>
+<li>确认代理链路（Velocity / BungeeCord）是否符合你的现网环境</li>
+<li>如果要开放远程 Web，先配置 <code>webRequireAuth</code> 与 <code>webAdminToken</code></li>
+<li>如果要启用本地资源包托管，先看：<a href="../operations/resource-pack.md">资源包 / 模型链路</a></li>
+</ul>
+<hr>
+<h2>下一步阅读</h2>
+<ul>
+<li><a href="./web-panel.md">Web 面板访问</a></li>
+<li><a href="../operations/commands.md">命令与日常运维</a></li>
+<li><a href="../reference/configuration.md">配置参考</a></li>
+</ul>
+</article>
+    </div>
+  </div>
+  </body>
+</html>

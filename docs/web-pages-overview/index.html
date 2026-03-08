@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="11 个页签怎么分工、典型使用流转是什么。" />
+    <meta name="keywords" content="TreeCore,TreeMC,我的世界核心,Minecraft 服务端核心,Minecraft server core,Paper,Folia,Paper 核心,Folia 核心,高性能 Minecraft,Web 管理面板,Web 页面总览,运维,TreeCore 文档,TreeMC 文档" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="author" content="TreeMC-cloud" />
+    <meta name="theme-color" content="#6fb53d" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="TreeCore" />
+    <meta property="og:title" content="Web 页面总览 | TreeCore 官方网站" />
+    <meta property="og:description" content="11 个页签怎么分工、典型使用流转是什么。" />
+    <meta property="og:url" content="https://treemc-cloud.github.io/docs/web-pages-overview/" />
+    <meta property="og:image" content="https://treemc-cloud.github.io/images/console-preview.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Web 页面总览 | TreeCore 官方网站" />
+    <meta name="twitter:description" content="11 个页签怎么分工、典型使用流转是什么。" />
+    <meta name="twitter:image" content="https://treemc-cloud.github.io/images/console-preview.png" />
+    <link rel="canonical" href="https://treemc-cloud.github.io/docs/web-pages-overview/" />
+    <title>Web 页面总览 | TreeCore 官方网站</title>
+    <link rel="icon" href="/images/console-preview.png" />
+    <script>
+      ;(() => {
+        const { hash } = window.location
+        if (hash.startsWith('#/')) {
+          const target = hash.slice(1)
+          window.history.replaceState(null, '', target)
+        }
+      })()
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "TreeCore",
+        "alternateName": ["TreeMC", "TreeCore 官方网站"],
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Java 21+",
+        "url": "https://treemc-cloud.github.io/",
+        "description": "TreeCore 是面向我的世界 / Minecraft 服务器场景的高性能服务端核心，聚焦 Paper、Folia、Web 管理、诊断、资源包链路与技术文档。",
+        "keywords": "TreeCore, TreeMC, 我的世界核心, Minecraft 服务端核心, Paper, Folia",
+        "publisher": {
+          "@type": "Organization",
+          "name": "TreeMC-cloud"
+        }
+      }
+    </script>
+    <script type="module" crossorigin src="/assets/index-CR4xc3Xv.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BEBSowld.css">
+  </head>
+  <body>
+    <div id="app">
+    <div class="page-shell container seo-static-page">
+      <div class="doc-breadcrumb">
+        <a href="/docs/">文档首页</a>
+        <span>/</span>
+        <span>运维</span>
+      </div>
+      <header class="doc-header surface-card">
+        <div>
+          <span class="card-label">Operations</span>
+          <h1>Web 页面总览</h1>
+          <p>11 个页签怎么分工、典型使用流转是什么。</p>
+        </div>
+        <div class="doc-meta">
+          <span>运维</span>
+          <span>5 分钟</span>
+        </div>
+      </header>
+      <article class="surface-card doc-article markdown-body"><h1>Web 页面总览</h1>
+<p>当前 Web 面板为 <strong>11 个页签</strong>，适合作为 TreeCore 的统一运维入口。</p>
+<hr>
+<h2>页面列表</h2>
+<table>
+<thead>
+<tr>
+<th>页签</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>仪表盘</td>
+<td>看整体状态、趋势图、红石热点、资源占用</td>
+</tr>
+<tr>
+<td>控制台</td>
+<td>执行命令、看实时日志</td>
+</tr>
+<tr>
+<td>系统诊断</td>
+<td>看内存快照、卡顿检测、线程转储、GC</td>
+</tr>
+<tr>
+<td>核心配置</td>
+<td>调整 TreeCore 配置，支持高级 JSON 模式</td>
+</tr>
+<tr>
+<td>生电优化</td>
+<td>管假人、红石热点相关开关、复制项开关</td>
+</tr>
+<tr>
+<td>模型管理</td>
+<td>上传模型 / 纹理，查看与删除模型</td>
+</tr>
+<tr>
+<td>资源包</td>
+<td>上传 ZIP、重载 SHA-1、下发在线玩家</td>
+</tr>
+<tr>
+<td>粒子特效</td>
+<td>编辑、保存、读取和播放粒子特效</td>
+</tr>
+<tr>
+<td>集成运维</td>
+<td>看 CraftEngine / Multiverse / ItemsAdder 状态，管理世界</td>
+</tr>
+<tr>
+<td>ItemsAdder 编辑器</td>
+<td>维护 IA 菜单与槽位</td>
+</tr>
+<tr>
+<td>备份管理</td>
+<td>创建和恢复世界备份</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>页面之间的典型流转</h2>
+<h3>内容更新流</h3>
+<ol>
+<li>模型管理：上传模型 / 纹理</li>
+<li>资源包：处理 ZIP / 哈希 / 下发玩家</li>
+<li>集成运维 / IA 编辑器：联动内容插件配置</li>
+</ol>
+<h3>问题排查流</h3>
+<ol>
+<li>仪表盘：先看 TPS / MSPT / CPU / 内存</li>
+<li>控制台：看近期报错和日志</li>
+<li>系统诊断：导出线程转储、看内存与卡顿信息</li>
+<li>备份管理：必要时先做备份再继续处理</li>
+</ol>
+<h3>综合服维护流</h3>
+<ol>
+<li>集成运维：看世界和桥接状态</li>
+<li>ItemsAdder 编辑器：改菜单</li>
+<li>资源包：下发资源变更</li>
+</ol>
+<hr>
+<h2>使用建议</h2>
+<h3>先看什么？</h3>
+<p>如果你刚进面板，建议优先看：</p>
+<ul>
+<li>仪表盘</li>
+<li>控制台</li>
+<li>系统诊断</li>
+</ul>
+<h3>高频操作在哪？</h3>
+<p>高频运维通常集中在：</p>
+<ul>
+<li>控制台</li>
+<li>核心配置</li>
+<li>资源包</li>
+<li>备份管理</li>
+</ul>
+<h3>内容服最常去哪里？</h3>
+<p>内容服通常集中在：</p>
+<ul>
+<li>模型管理</li>
+<li>资源包</li>
+<li>粒子特效</li>
+<li>集成运维</li>
+<li>ItemsAdder 编辑器</li>
+</ul>
+<hr>
+<h2>相关页面</h2>
+<ul>
+<li><a href="../getting-started/web-panel.md">Web 面板访问</a></li>
+<li><a href="./resource-pack.md">资源包 / 模型链路</a></li>
+<li><a href="./diagnostics-and-backups.md">诊断与备份</a></li>
+</ul>
+</article>
+    </div>
+  </div>
+  </body>
+</html>

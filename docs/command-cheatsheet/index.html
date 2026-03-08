@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="快速查命令，不展开概念说明。" />
+    <meta name="keywords" content="TreeCore,TreeMC,我的世界核心,Minecraft 服务端核心,Minecraft server core,Paper,Folia,Paper 核心,Folia 核心,高性能 Minecraft,Web 管理面板,命令速查表,参考,TreeCore 文档,TreeMC 文档" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="author" content="TreeMC-cloud" />
+    <meta name="theme-color" content="#6fb53d" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="TreeCore" />
+    <meta property="og:title" content="命令速查表 | TreeCore 官方网站" />
+    <meta property="og:description" content="快速查命令，不展开概念说明。" />
+    <meta property="og:url" content="https://treemc-cloud.github.io/docs/command-cheatsheet/" />
+    <meta property="og:image" content="https://treemc-cloud.github.io/images/console-preview.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="命令速查表 | TreeCore 官方网站" />
+    <meta name="twitter:description" content="快速查命令，不展开概念说明。" />
+    <meta name="twitter:image" content="https://treemc-cloud.github.io/images/console-preview.png" />
+    <link rel="canonical" href="https://treemc-cloud.github.io/docs/command-cheatsheet/" />
+    <title>命令速查表 | TreeCore 官方网站</title>
+    <link rel="icon" href="/images/console-preview.png" />
+    <script>
+      ;(() => {
+        const { hash } = window.location
+        if (hash.startsWith('#/')) {
+          const target = hash.slice(1)
+          window.history.replaceState(null, '', target)
+        }
+      })()
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "TreeCore",
+        "alternateName": ["TreeMC", "TreeCore 官方网站"],
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Java 21+",
+        "url": "https://treemc-cloud.github.io/",
+        "description": "TreeCore 是面向我的世界 / Minecraft 服务器场景的高性能服务端核心，聚焦 Paper、Folia、Web 管理、诊断、资源包链路与技术文档。",
+        "keywords": "TreeCore, TreeMC, 我的世界核心, Minecraft 服务端核心, Paper, Folia",
+        "publisher": {
+          "@type": "Organization",
+          "name": "TreeMC-cloud"
+        }
+      }
+    </script>
+    <script type="module" crossorigin src="/assets/index-CR4xc3Xv.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BEBSowld.css">
+  </head>
+  <body>
+    <div id="app">
+    <div class="page-shell container seo-static-page">
+      <div class="doc-breadcrumb">
+        <a href="/docs/">文档首页</a>
+        <span>/</span>
+        <span>参考</span>
+      </div>
+      <header class="doc-header surface-card">
+        <div>
+          <span class="card-label">Cheatsheet</span>
+          <h1>命令速查表</h1>
+          <p>快速查命令，不展开概念说明。</p>
+        </div>
+        <div class="doc-meta">
+          <span>参考</span>
+          <span>2 分钟</span>
+        </div>
+      </header>
+      <article class="surface-card doc-article markdown-body"><h1>命令速查表</h1>
+<p>这页适合快速查命令，不展开解释。</p>
+<hr>
+<h2>基础</h2>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/tc</code></td>
+<td>显示帮助</td>
+</tr>
+<tr>
+<td><code>/tc perf</code></td>
+<td>性能状态</td>
+</tr>
+<tr>
+<td><code>/tc reload</code></td>
+<td>重载配置</td>
+</tr>
+<tr>
+<td><code>/tc tpsbar</code></td>
+<td>切换 BossBar</td>
+</tr>
+<tr>
+<td><code>/tc tuner</code></td>
+<td>查看调优器状态</td>
+</tr>
+<tr>
+<td><code>/tc audit</code></td>
+<td>插件审计</td>
+</tr>
+<tr>
+<td><code>/tc perftest</code></td>
+<td>性能压测</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>启动与 JVM</h2>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/tc jvmflags</code></td>
+<td>输出 JVM 参数建议</td>
+</tr>
+<tr>
+<td><code>/tc startscript</code></td>
+<td>生成启动脚本</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>内容与特效</h2>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/tc spawn &lt;模型名&gt;</code></td>
+<td>生成模型</td>
+</tr>
+<tr>
+<td><code>/tc effect &lt;blizzard|nova|helix&gt;</code></td>
+<td>播放内置特效</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>假人系统</h2>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/tc bot list</code></td>
+<td>查看假人</td>
+</tr>
+<tr>
+<td><code>/tc bot create [名] [皮肤]</code></td>
+<td>创建假人</td>
+</tr>
+<tr>
+<td><code>/tc bot summon [名] [皮肤]</code></td>
+<td>创建假人（别名入口）</td>
+</tr>
+<tr>
+<td><code>/tc bot attack &lt;名&gt;</code></td>
+<td>假人攻击</td>
+</tr>
+<tr>
+<td><code>/tc bot break &lt;名&gt;</code></td>
+<td>假人挖掘</td>
+</tr>
+<tr>
+<td><code>/tc bot face &lt;名&gt; &lt;yaw&gt; &lt;pitch&gt;</code></td>
+<td>设置朝向</td>
+</tr>
+<tr>
+<td><code>/tc bot clear [名/all]</code></td>
+<td>清理假人</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>相关页面</h2>
+<ul>
+<li><a href="./../operations/commands.md">命令与日常运维</a></li>
+<li><a href="./../operations/fakeplayer-and-redstone.md">假人 / 红石运维</a></li>
+</ul>
+</article>
+    </div>
+  </div>
+  </body>
+</html>

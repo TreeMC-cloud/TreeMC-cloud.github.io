@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="理解 treecore-web、JAR 内嵌资源与运行时目录的关系。" />
+    <meta name="keywords" content="TreeCore,TreeMC,我的世界核心,Minecraft 服务端核心,Minecraft server core,Paper,Folia,Paper 核心,Folia 核心,高性能 Minecraft,Web 管理面板,Web 资源同步机制,技术视角,TreeCore 文档,TreeMC 文档" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="author" content="TreeMC-cloud" />
+    <meta name="theme-color" content="#6fb53d" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="TreeCore" />
+    <meta property="og:title" content="Web 资源同步机制 | TreeCore 官方网站" />
+    <meta property="og:description" content="理解 treecore-web、JAR 内嵌资源与运行时目录的关系。" />
+    <meta property="og:url" content="https://treemc-cloud.github.io/docs/web-ui-pipeline/" />
+    <meta property="og:image" content="https://treemc-cloud.github.io/images/console-preview.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Web 资源同步机制 | TreeCore 官方网站" />
+    <meta name="twitter:description" content="理解 treecore-web、JAR 内嵌资源与运行时目录的关系。" />
+    <meta name="twitter:image" content="https://treemc-cloud.github.io/images/console-preview.png" />
+    <link rel="canonical" href="https://treemc-cloud.github.io/docs/web-ui-pipeline/" />
+    <title>Web 资源同步机制 | TreeCore 官方网站</title>
+    <link rel="icon" href="/images/console-preview.png" />
+    <script>
+      ;(() => {
+        const { hash } = window.location
+        if (hash.startsWith('#/')) {
+          const target = hash.slice(1)
+          window.history.replaceState(null, '', target)
+        }
+      })()
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "TreeCore",
+        "alternateName": ["TreeMC", "TreeCore 官方网站"],
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Java 21+",
+        "url": "https://treemc-cloud.github.io/",
+        "description": "TreeCore 是面向我的世界 / Minecraft 服务器场景的高性能服务端核心，聚焦 Paper、Folia、Web 管理、诊断、资源包链路与技术文档。",
+        "keywords": "TreeCore, TreeMC, 我的世界核心, Minecraft 服务端核心, Paper, Folia",
+        "publisher": {
+          "@type": "Organization",
+          "name": "TreeMC-cloud"
+        }
+      }
+    </script>
+    <script type="module" crossorigin src="/assets/index-CR4xc3Xv.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BEBSowld.css">
+  </head>
+  <body>
+    <div id="app">
+    <div class="page-shell container seo-static-page">
+      <div class="doc-breadcrumb">
+        <a href="/docs/">文档首页</a>
+        <span>/</span>
+        <span>技术视角</span>
+      </div>
+      <header class="doc-header surface-card">
+        <div>
+          <span class="card-label">Web Pipeline</span>
+          <h1>Web 资源同步机制</h1>
+          <p>理解 treecore-web、JAR 内嵌资源与运行时目录的关系。</p>
+        </div>
+        <div class="doc-meta">
+          <span>技术视角</span>
+          <span>6 分钟</span>
+        </div>
+      </header>
+      <article class="surface-card doc-article markdown-body"><h1>Web 资源同步机制</h1>
+<p>本页说明 TreeCore 的 Web 前端资源是如何进入运行目录并自动更新的。</p>
+<p>这部分适合：</p>
+<ul>
+<li>想改前端页面的人</li>
+<li>想确认“为什么我换了 JAR 页面还没变”的人</li>
+<li>想理解 <code>treecore-web/</code>、内嵌资源、运行目录三者关系的人</li>
+</ul>
+<hr>
+<h2>三层资源位置</h2>
+<p>当前前端资源主要有三层：</p>
+<h3>1. 源文件目录</h3>
+<ul>
+<li><code>treecore-web/</code></li>
+</ul>
+<p>这是本地修改最直接的地方，通常先改这里。</p>
+<h3>2. JAR 内嵌资源目录</h3>
+<ul>
+<li><code>paper-server/src/main/resources/treecore-web/</code></li>
+</ul>
+<p>这部分会被打进 JAR，运行时 WebServer 会从这里把文件释放到运行目录。</p>
+<h3>3. 运行时 webRoot</h3>
+<ul>
+<li>服务器运行目录下的 <code>treecore-web/</code></li>
+</ul>
+<p>浏览器真正访问到的是这里面的文件。</p>
+<hr>
+<h2>当前会自动同步的文件</h2>
+<p>当前核心同步逻辑会重点处理：</p>
+<ul>
+<li><code>index.html</code></li>
+<li><code>treecore-core.js</code></li>
+</ul>
+<p>同时：</p>
+<ul>
+<li><code>admin-ext.js</code> 会在运行时由服务端动态生成</li>
+<li><code>ui_theme.html</code> 会在需要时初始化</li>
+</ul>
+<p>也就是说：</p>
+<blockquote>
+<p>不是所有前端文件都完全按静态资源复制；其中一部分是运行时生成或补全的。</p>
+</blockquote>
+<hr>
+<h2>版本标记机制</h2>
+<p>相关类：</p>
+<ul>
+<li><code>io.papermc.paper.treecore.web.TreeCoreWebServer</code></li>
+</ul>
+<p>关键字段：</p>
+<ul>
+<li><code>UI_VERSION</code></li>
+</ul>
+<p>运行时逻辑大致是：</p>
+<ol>
+<li>服务端启动 WebServer</li>
+<li>检查 webRoot 下的 <code>.ui_version</code></li>
+<li>如果版本不一致，就从 JAR 里的 <code>treecore-web/</code> 释放新文件</li>
+<li>写回新的 <code>.ui_version</code></li>
+</ol>
+<p>因此：</p>
+<ul>
+<li><strong>新 JAR + 完整重启</strong> 才会触发这轮自动覆盖</li>
+<li>只改本地源码、不重新构建运行包，不会让线上页面自动变新</li>
+</ul>
+<hr>
+<h2>常见误区</h2>
+<h3>1. “源码里明明有，浏览器里为什么没有？”</h3>
+<p>通常优先排查：</p>
+<ul>
+<li>当前运行的是否是新 JAR</li>
+<li>服务端是否完整重启</li>
+<li>浏览器是否仍然使用缓存</li>
+<li>运行目录 <code>treecore-web/</code> 里是否还是旧文件</li>
+</ul>
+<h3>2. “为什么 <code>admin-ext.js</code> 不在所有目录里一致？”</h3>
+<p>因为它不是单纯的静态拷贝文件，当前设计里会由服务端运行时生成。</p>
+<h3>3. “为什么默认远程打不开？”</h3>
+<p>因为默认绑定到：</p>
+<ul>
+<li><code>127.0.0.1</code></li>
+</ul>
+<p>并且未主动开启远程访问。</p>
+<hr>
+<h2>推荐修改流程</h2>
+<p>如果你要改 Web：</p>
+<ol>
+<li>先改 <code>treecore-web/</code></li>
+<li>同步到 <code>paper-server/src/main/resources/treecore-web/</code></li>
+<li>构建新的 JAR</li>
+<li>完整重启服务端</li>
+<li>强刷浏览器缓存验证</li>
+</ol>
+<hr>
+<h2>相关页面</h2>
+<ul>
+<li><a href="../getting-started/web-panel.md">Web 面板访问</a></li>
+<li><a href="../architecture/system-overview.md">系统架构总览</a></li>
+</ul>
+</article>
+    </div>
+  </div>
+  </body>
+</html>

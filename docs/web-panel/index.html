@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="了解默认监听地址、远程访问和鉴权配置。" />
+    <meta name="keywords" content="TreeCore,TreeMC,我的世界核心,Minecraft 服务端核心,Minecraft server core,Paper,Folia,Paper 核心,Folia 核心,高性能 Minecraft,Web 管理面板,Web 面板访问,入门,TreeCore 文档,TreeMC 文档" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="author" content="TreeMC-cloud" />
+    <meta name="theme-color" content="#6fb53d" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="TreeCore" />
+    <meta property="og:title" content="Web 面板访问 | TreeCore 官方网站" />
+    <meta property="og:description" content="了解默认监听地址、远程访问和鉴权配置。" />
+    <meta property="og:url" content="https://treemc-cloud.github.io/docs/web-panel/" />
+    <meta property="og:image" content="https://treemc-cloud.github.io/images/console-preview.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Web 面板访问 | TreeCore 官方网站" />
+    <meta name="twitter:description" content="了解默认监听地址、远程访问和鉴权配置。" />
+    <meta name="twitter:image" content="https://treemc-cloud.github.io/images/console-preview.png" />
+    <link rel="canonical" href="https://treemc-cloud.github.io/docs/web-panel/" />
+    <title>Web 面板访问 | TreeCore 官方网站</title>
+    <link rel="icon" href="/images/console-preview.png" />
+    <script>
+      ;(() => {
+        const { hash } = window.location
+        if (hash.startsWith('#/')) {
+          const target = hash.slice(1)
+          window.history.replaceState(null, '', target)
+        }
+      })()
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "TreeCore",
+        "alternateName": ["TreeMC", "TreeCore 官方网站"],
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Java 21+",
+        "url": "https://treemc-cloud.github.io/",
+        "description": "TreeCore 是面向我的世界 / Minecraft 服务器场景的高性能服务端核心，聚焦 Paper、Folia、Web 管理、诊断、资源包链路与技术文档。",
+        "keywords": "TreeCore, TreeMC, 我的世界核心, Minecraft 服务端核心, Paper, Folia",
+        "publisher": {
+          "@type": "Organization",
+          "name": "TreeMC-cloud"
+        }
+      }
+    </script>
+    <script type="module" crossorigin src="/assets/index-CR4xc3Xv.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BEBSowld.css">
+  </head>
+  <body>
+    <div id="app">
+    <div class="page-shell container seo-static-page">
+      <div class="doc-breadcrumb">
+        <a href="/docs/">文档首页</a>
+        <span>/</span>
+        <span>入门</span>
+      </div>
+      <header class="doc-header surface-card">
+        <div>
+          <span class="card-label">Access</span>
+          <h1>Web 面板访问</h1>
+          <p>了解默认监听地址、远程访问和鉴权配置。</p>
+        </div>
+        <div class="doc-meta">
+          <span>入门</span>
+          <span>5 分钟</span>
+        </div>
+      </header>
+      <article class="surface-card doc-article markdown-body"><h1>Web 面板访问</h1>
+<h2>默认访问方式</h2>
+<p>TreeCore 的 Web 面板默认只监听本机：</p>
+<ul>
+<li>地址：<code>http://127.0.0.1:8080</code></li>
+<li>默认端口：<code>8080</code></li>
+</ul>
+<p>默认相关配置：</p>
+<pre><code class="language-jsonc">{
+  &quot;webServerPort&quot;: 8080,
+  &quot;webAllowRemote&quot;: false,
+  &quot;webBindAddress&quot;: &quot;127.0.0.1&quot;,
+  &quot;webRequireAuth&quot;: false,
+  &quot;webAdminToken&quot;: &quot;&quot;
+}
+</code></pre>
+<p>这意味着：</p>
+<ul>
+<li>你在服务器本机浏览器里通常能直接打开</li>
+<li>局域网 / 公网设备默认不能直接访问</li>
+</ul>
+<hr>
+<h2>如何开启远程访问</h2>
+<p>如果你要让其他设备访问 Web 面板，建议至少这样配置：</p>
+<pre><code class="language-jsonc">{
+  &quot;webAllowRemote&quot;: true,
+  &quot;webBindAddress&quot;: &quot;0.0.0.0&quot;,
+  &quot;webRequireAuth&quot;: true,
+  &quot;webAdminToken&quot;: &quot;请改成你自己的强随机令牌&quot;
+}
+</code></pre>
+<h3>建议说明</h3>
+<ul>
+<li><code>webAllowRemote = true</code>：允许非回环地址访问</li>
+<li><code>webBindAddress = 0.0.0.0</code>：监听全部网卡</li>
+<li><code>webRequireAuth = true</code>：启用管理令牌验证</li>
+<li><code>webAdminToken</code>：建议使用足够长的随机字符串</li>
+</ul>
+<blockquote>
+<p>不建议把远程访问和无鉴权同时打开。</p>
+</blockquote>
+<hr>
+<h2>当前面板页签</h2>
+<p>当前 Web 面板为 <strong>11 页签</strong>：</p>
+<ol>
+<li>仪表盘</li>
+<li>控制台</li>
+<li>系统诊断</li>
+<li>核心配置</li>
+<li>生电优化</li>
+<li>模型管理</li>
+<li>资源包</li>
+<li>粒子特效</li>
+<li>集成运维</li>
+<li>ItemsAdder 编辑器</li>
+<li>备份管理</li>
+</ol>
+<hr>
+<h2>常见访问问题</h2>
+<h3>打不开页面</h3>
+<p>请优先检查：</p>
+<ol>
+<li>服务端是否成功启动 WebServer</li>
+<li>端口是否被占用</li>
+<li>是否仍在使用旧缓存页面（浏览器可尝试 <code>Ctrl + F5</code>）</li>
+<li>是否启用了远程访问但防火墙未放行端口</li>
+</ol>
+<h3>页面看起来还是旧版本</h3>
+<p>当前网页资源带有版本同步机制。</p>
+<p>如果你升级了服务端但页面没变化，重点检查：</p>
+<ul>
+<li>运行的是否真的是新 JAR</li>
+<li>服务端是否完整重启</li>
+<li><code>treecore-web/.ui_version</code> 是否已刷新</li>
+</ul>
+<p>技术细节可看：</p>
+<ul>
+<li><a href="../development/web-ui-pipeline.md">Web 资源同步机制</a></li>
+</ul>
+<hr>
+<h2>下一步阅读</h2>
+<ul>
+<li><a href="../operations/resource-pack.md">资源包 / 模型链路</a></li>
+<li><a href="../operations/diagnostics-and-backups.md">诊断与备份</a></li>
+</ul>
+</article>
+    </div>
+  </div>
+  </body>
+</html>

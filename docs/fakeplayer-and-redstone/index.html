@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="假人命令、热点回放和生电保护的理解方式。" />
+    <meta name="keywords" content="TreeCore,TreeMC,我的世界核心,Minecraft 服务端核心,Minecraft server core,Paper,Folia,Paper 核心,Folia 核心,高性能 Minecraft,Web 管理面板,假人 / 红石运维,运维,TreeCore 文档,TreeMC 文档" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="author" content="TreeMC-cloud" />
+    <meta name="theme-color" content="#6fb53d" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="TreeCore" />
+    <meta property="og:title" content="假人 / 红石运维 | TreeCore 官方网站" />
+    <meta property="og:description" content="假人命令、热点回放和生电保护的理解方式。" />
+    <meta property="og:url" content="https://treemc-cloud.github.io/docs/fakeplayer-and-redstone/" />
+    <meta property="og:image" content="https://treemc-cloud.github.io/images/console-preview.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="假人 / 红石运维 | TreeCore 官方网站" />
+    <meta name="twitter:description" content="假人命令、热点回放和生电保护的理解方式。" />
+    <meta name="twitter:image" content="https://treemc-cloud.github.io/images/console-preview.png" />
+    <link rel="canonical" href="https://treemc-cloud.github.io/docs/fakeplayer-and-redstone/" />
+    <title>假人 / 红石运维 | TreeCore 官方网站</title>
+    <link rel="icon" href="/images/console-preview.png" />
+    <script>
+      ;(() => {
+        const { hash } = window.location
+        if (hash.startsWith('#/')) {
+          const target = hash.slice(1)
+          window.history.replaceState(null, '', target)
+        }
+      })()
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "TreeCore",
+        "alternateName": ["TreeMC", "TreeCore 官方网站"],
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Java 21+",
+        "url": "https://treemc-cloud.github.io/",
+        "description": "TreeCore 是面向我的世界 / Minecraft 服务器场景的高性能服务端核心，聚焦 Paper、Folia、Web 管理、诊断、资源包链路与技术文档。",
+        "keywords": "TreeCore, TreeMC, 我的世界核心, Minecraft 服务端核心, Paper, Folia",
+        "publisher": {
+          "@type": "Organization",
+          "name": "TreeMC-cloud"
+        }
+      }
+    </script>
+    <script type="module" crossorigin src="/assets/index-CR4xc3Xv.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BEBSowld.css">
+  </head>
+  <body>
+    <div id="app">
+    <div class="page-shell container seo-static-page">
+      <div class="doc-breadcrumb">
+        <a href="/docs/">文档首页</a>
+        <span>/</span>
+        <span>运维</span>
+      </div>
+      <header class="doc-header surface-card">
+        <div>
+          <span class="card-label">Redstone</span>
+          <h1>假人 / 红石运维</h1>
+          <p>假人命令、热点回放和生电保护的理解方式。</p>
+        </div>
+        <div class="doc-meta">
+          <span>运维</span>
+          <span>5 分钟</span>
+        </div>
+      </header>
+      <article class="surface-card doc-article markdown-body"><h1>假人 / 红石运维</h1>
+<p>TreeCore 当前把一部分生电相关能力放进了统一的运维体系里，重点包括：</p>
+<ul>
+<li>假人系统</li>
+<li>红石热点监控</li>
+<li>红石热点回放</li>
+<li>TNT / 地毯复制开关</li>
+</ul>
+<hr>
+<h2>假人系统</h2>
+<p>当前命令与面板都能管理假人。</p>
+<h3>命令入口</h3>
+<ul>
+<li><code>/tc bot list</code></li>
+<li><code>/tc bot create [名] [皮肤]</code></li>
+<li><code>/tc bot summon [名] [皮肤]</code></li>
+<li><code>/tc bot attack &lt;名&gt;</code></li>
+<li><code>/tc bot break &lt;名&gt;</code></li>
+<li><code>/tc bot face &lt;名&gt; &lt;yaw&gt; &lt;pitch&gt;</code></li>
+<li><code>/tc bot clear [名/all]</code></li>
+</ul>
+<h3>主要配置</h3>
+<pre><code class="language-jsonc">{
+  &quot;fakePlayerEnabled&quot;: true,
+  &quot;fakePlayerMaxCount&quot;: 16,
+  &quot;fakePlayerDefaultLifetimeSeconds&quot;: 600
+}
+</code></pre>
+<hr>
+<h2>红石热点</h2>
+<p>当前 Web 面板可以查看：</p>
+<ul>
+<li>红石热点状态</li>
+<li>热点帧序列</li>
+<li>热点回放</li>
+</ul>
+<p>这更适合用来：</p>
+<ul>
+<li>找出异常热点区块</li>
+<li>分析短时间内高频更新区域</li>
+<li>辅助决定是否需要开启保护项</li>
+</ul>
+<hr>
+<h2>保护项理解方式</h2>
+<h3>默认策略</h3>
+<p>默认更偏保守：</p>
+<ul>
+<li><code>redstoneOptimizationEnabled = false</code></li>
+<li><code>redstoneHotspotThrottle = false</code></li>
+<li><code>redstoneHeatReplayEnabled = false</code></li>
+</ul>
+<p>也就是说：</p>
+<blockquote>
+<p>默认不会主动去改你的红石节奏。</p>
+</blockquote>
+<h3>什么时候考虑开启？</h3>
+<p>你可以在这些场景考虑逐步启用：</p>
+<ul>
+<li>已出现明确热点区块</li>
+<li>高峰时 MSPT 明显被机器拖高</li>
+<li>你需要先定位再决定是否干预</li>
+</ul>
+<hr>
+<h2>复制项开关</h2>
+<p>当前仍保留：</p>
+<ul>
+<li><code>carpetDuplicationEnabled</code></li>
+<li><code>tntDuplicationEnabled</code></li>
+</ul>
+<p>用于按服务器规则决定是否开放对应玩法。</p>
+<hr>
+<h2>建议使用顺序</h2>
+<ol>
+<li>先保持默认配置运行</li>
+<li>通过仪表盘与生电页观察热点</li>
+<li>确认问题区域后再决定是否开启热点保护</li>
+<li>对重要生电服，先在测试环境验证再上正式服</li>
+</ol>
+<hr>
+<h2>相关页面</h2>
+<ul>
+<li><a href="./commands.md">命令与日常运维</a></li>
+<li><a href="../reference/configuration.md">配置参考</a></li>
+<li><a href="./web-pages-overview.md">Web 页面总览</a></li>
+</ul>
+</article>
+    </div>
+  </div>
+  </body>
+</html>

@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="整理当前最常用、最值得优先理解的配置项。" />
+    <meta name="keywords" content="TreeCore,TreeMC,我的世界核心,Minecraft 服务端核心,Minecraft server core,Paper,Folia,Paper 核心,Folia 核心,高性能 Minecraft,Web 管理面板,配置参考,参考,TreeCore 文档,TreeMC 文档" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="author" content="TreeMC-cloud" />
+    <meta name="theme-color" content="#6fb53d" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="TreeCore" />
+    <meta property="og:title" content="配置参考 | TreeCore 官方网站" />
+    <meta property="og:description" content="整理当前最常用、最值得优先理解的配置项。" />
+    <meta property="og:url" content="https://treemc-cloud.github.io/docs/configuration/" />
+    <meta property="og:image" content="https://treemc-cloud.github.io/images/console-preview.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="配置参考 | TreeCore 官方网站" />
+    <meta name="twitter:description" content="整理当前最常用、最值得优先理解的配置项。" />
+    <meta name="twitter:image" content="https://treemc-cloud.github.io/images/console-preview.png" />
+    <link rel="canonical" href="https://treemc-cloud.github.io/docs/configuration/" />
+    <title>配置参考 | TreeCore 官方网站</title>
+    <link rel="icon" href="/images/console-preview.png" />
+    <script>
+      ;(() => {
+        const { hash } = window.location
+        if (hash.startsWith('#/')) {
+          const target = hash.slice(1)
+          window.history.replaceState(null, '', target)
+        }
+      })()
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "TreeCore",
+        "alternateName": ["TreeMC", "TreeCore 官方网站"],
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Java 21+",
+        "url": "https://treemc-cloud.github.io/",
+        "description": "TreeCore 是面向我的世界 / Minecraft 服务器场景的高性能服务端核心，聚焦 Paper、Folia、Web 管理、诊断、资源包链路与技术文档。",
+        "keywords": "TreeCore, TreeMC, 我的世界核心, Minecraft 服务端核心, Paper, Folia",
+        "publisher": {
+          "@type": "Organization",
+          "name": "TreeMC-cloud"
+        }
+      }
+    </script>
+    <script type="module" crossorigin src="/assets/index-CR4xc3Xv.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BEBSowld.css">
+  </head>
+  <body>
+    <div id="app">
+    <div class="page-shell container seo-static-page">
+      <div class="doc-breadcrumb">
+        <a href="/docs/">文档首页</a>
+        <span>/</span>
+        <span>参考</span>
+      </div>
+      <header class="doc-header surface-card">
+        <div>
+          <span class="card-label">Reference</span>
+          <h1>配置参考</h1>
+          <p>整理当前最常用、最值得优先理解的配置项。</p>
+        </div>
+        <div class="doc-meta">
+          <span>参考</span>
+          <span>8 分钟</span>
+        </div>
+      </header>
+      <article class="surface-card doc-article markdown-body"><h1>配置参考</h1>
+<p>TreeCore 配置文件为：</p>
+<ul>
+<li><code>treecore.json</code></li>
+</ul>
+<p>首次启动会自动生成，当前既可以：</p>
+<ul>
+<li>直接手改 JSON</li>
+<li>通过 Web 面板可视化编辑</li>
+</ul>
+<blockquote>
+<p>由于配置项较多，这里只整理最常用、最值得优先理解的部分。</p>
+</blockquote>
+<hr>
+<h2>Web 访问</h2>
+<pre><code class="language-jsonc">{
+  &quot;webServerPort&quot;: 8080,
+  &quot;webAllowRemote&quot;: false,
+  &quot;webBindAddress&quot;: &quot;127.0.0.1&quot;,
+  &quot;webRequireAuth&quot;: false,
+  &quot;webAdminToken&quot;: &quot;&quot;
+}
+</code></pre>
+<h3>建议</h3>
+<ul>
+<li>单机维护：保留默认值</li>
+<li>局域网 / 公网访问：开启 <code>webAllowRemote</code>，并务必启用 <code>webRequireAuth</code></li>
+</ul>
+<hr>
+<h2>性能主开关</h2>
+<pre><code class="language-jsonc">{
+  &quot;enableOptimization&quot;: true,
+  &quot;dynamicViewDistance&quot;: true,
+  &quot;dynamicSimulationDistance&quot;: true,
+  &quot;autoLayeredPresetEnabled&quot;: true,
+  &quot;msptTarget&quot;: 45
+}
+</code></pre>
+<h3>含义</h3>
+<ul>
+<li><code>enableOptimization</code>：总开关</li>
+<li><code>dynamicViewDistance</code>：动态视距</li>
+<li><code>dynamicSimulationDistance</code>：动态模拟距离</li>
+<li><code>autoLayeredPresetEnabled</code>：自动分层预设</li>
+<li><code>msptTarget</code>：优化器目标 MSPT</li>
+</ul>
+<hr>
+<h2>网络 / 传送链路</h2>
+<pre><code class="language-jsonc">{
+  &quot;deltaAwarePacketFilter&quot;: true,
+  &quot;tabListBatchEnabled&quot;: true,
+  &quot;teleportPreloadEnabled&quot;: true,
+  &quot;chunkPreloadEnabled&quot;: true,
+  &quot;loginStormProtectionEnabled&quot;: true,
+  &quot;broadcastScopeReductionEnabled&quot;: true
+}
+</code></pre>
+<p>这一组更偏向：</p>
+<ul>
+<li>网络冗余控制</li>
+<li>多人进入保护</li>
+<li>远距离移动与传送体验优化</li>
+</ul>
+<hr>
+<h2>生电 / 假人</h2>
+<pre><code class="language-jsonc">{
+  &quot;fakePlayerEnabled&quot;: true,
+  &quot;fakePlayerMaxCount&quot;: 16,
+  &quot;fakePlayerDefaultLifetimeSeconds&quot;: 600,
+  &quot;carpetDuplicationEnabled&quot;: false,
+  &quot;tntDuplicationEnabled&quot;: false,
+  &quot;redstoneOptimizationEnabled&quot;: false,
+  &quot;redstoneHotspotThrottle&quot;: false,
+  &quot;redstoneHeatReplayEnabled&quot;: false
+}
+</code></pre>
+<h3>理解方式</h3>
+<ul>
+<li>假人系统默认开启</li>
+<li>TNT / 地毯复制默认关闭</li>
+<li>红石热点保护与回放默认关闭</li>
+</ul>
+<p>也就是说：</p>
+<blockquote>
+<p>默认更偏原版与保守策略，需要时再逐项打开。</p>
+</blockquote>
+<hr>
+<h2>资源包</h2>
+<pre><code class="language-jsonc">{
+  &quot;resourcePackUrl&quot;: &quot;&quot;,
+  &quot;resourcePackHash&quot;: &quot;&quot;,
+  &quot;forceResourcePack&quot;: false,
+  &quot;resourcePackPrompt&quot;: &quot;&quot;,
+  &quot;useLocalResourcePack&quot;: false,
+  &quot;localResourcePackName&quot;: &quot;pack.zip&quot;
+}
+</code></pre>
+<h3>两种使用方式</h3>
+<ul>
+<li>外部 URL 模式</li>
+<li>本地托管 ZIP 模式</li>
+</ul>
+<p>如果你使用 Web 面板拖拽上传 ZIP，重点关注：</p>
+<ul>
+<li><code>useLocalResourcePack</code></li>
+<li><code>localResourcePackName</code></li>
+<li><code>resourcePackHash</code></li>
+</ul>
+<hr>
+<h2>虚拟线程</h2>
+<pre><code class="language-jsonc">{
+  &quot;enableVirtualThreads&quot;: true,
+  &quot;virtualThreadsForWebOps&quot;: true,
+  &quot;virtualThreadsForPackBuild&quot;: true,
+  &quot;virtualThreadsForOneClickOps&quot;: true
+}
+</code></pre>
+<p>主要用于把 Web、资源包和部分运维任务尽量从传统阻塞模型里解耦出来。</p>
+<hr>
+<h2>建议改配置的顺序</h2>
+<p>建议按下面顺序理解与调整：</p>
+<ol>
+<li>Web 访问与安全</li>
+<li>性能主开关</li>
+<li>资源包模式</li>
+<li>假人 / 生电保护</li>
+<li>更细的网络与传送链路设置</li>
+</ol>
+<p>如果你只是普通运维，很多配置可以优先通过 Web 面板观察后再决定是否改动。</p>
+</article>
+    </div>
+  </div>
+  </body>
+</html>

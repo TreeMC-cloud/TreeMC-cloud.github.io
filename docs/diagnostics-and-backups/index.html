@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="如何用 TreeCore 做日志、线程、内存和备份处理。" />
+    <meta name="keywords" content="TreeCore,TreeMC,我的世界核心,Minecraft 服务端核心,Minecraft server core,Paper,Folia,Paper 核心,Folia 核心,高性能 Minecraft,Web 管理面板,诊断与备份,运维,TreeCore 文档,TreeMC 文档" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="author" content="TreeMC-cloud" />
+    <meta name="theme-color" content="#6fb53d" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="TreeCore" />
+    <meta property="og:title" content="诊断与备份 | TreeCore 官方网站" />
+    <meta property="og:description" content="如何用 TreeCore 做日志、线程、内存和备份处理。" />
+    <meta property="og:url" content="https://treemc-cloud.github.io/docs/diagnostics-and-backups/" />
+    <meta property="og:image" content="https://treemc-cloud.github.io/images/console-preview.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="诊断与备份 | TreeCore 官方网站" />
+    <meta name="twitter:description" content="如何用 TreeCore 做日志、线程、内存和备份处理。" />
+    <meta name="twitter:image" content="https://treemc-cloud.github.io/images/console-preview.png" />
+    <link rel="canonical" href="https://treemc-cloud.github.io/docs/diagnostics-and-backups/" />
+    <title>诊断与备份 | TreeCore 官方网站</title>
+    <link rel="icon" href="/images/console-preview.png" />
+    <script>
+      ;(() => {
+        const { hash } = window.location
+        if (hash.startsWith('#/')) {
+          const target = hash.slice(1)
+          window.history.replaceState(null, '', target)
+        }
+      })()
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "TreeCore",
+        "alternateName": ["TreeMC", "TreeCore 官方网站"],
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Java 21+",
+        "url": "https://treemc-cloud.github.io/",
+        "description": "TreeCore 是面向我的世界 / Minecraft 服务器场景的高性能服务端核心，聚焦 Paper、Folia、Web 管理、诊断、资源包链路与技术文档。",
+        "keywords": "TreeCore, TreeMC, 我的世界核心, Minecraft 服务端核心, Paper, Folia",
+        "publisher": {
+          "@type": "Organization",
+          "name": "TreeMC-cloud"
+        }
+      }
+    </script>
+    <script type="module" crossorigin src="/assets/index-CR4xc3Xv.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BEBSowld.css">
+  </head>
+  <body>
+    <div id="app">
+    <div class="page-shell container seo-static-page">
+      <div class="doc-breadcrumb">
+        <a href="/docs/">文档首页</a>
+        <span>/</span>
+        <span>运维</span>
+      </div>
+      <header class="doc-header surface-card">
+        <div>
+          <span class="card-label">Diagnostics</span>
+          <h1>诊断与备份</h1>
+          <p>如何用 TreeCore 做日志、线程、内存和备份处理。</p>
+        </div>
+        <div class="doc-meta">
+          <span>运维</span>
+          <span>5 分钟</span>
+        </div>
+      </header>
+      <article class="surface-card doc-article markdown-body"><h1>诊断与备份</h1>
+<p>TreeCore 当前把一部分常见运维操作直接放进了 Web 面板，而不是要求你全程 SSH 到服务器里处理。</p>
+<hr>
+<h2>系统诊断页</h2>
+<p>当前 <strong>系统诊断</strong> 页支持：</p>
+<ul>
+<li><strong>内存快照</strong>：查看堆与内存池信息</li>
+<li><strong>卡顿检测</strong>：查看主线程阻塞相关信息</li>
+<li><strong>线程转储</strong>：直接生成线程 dump，并可复制</li>
+<li><strong>GC 操作</strong>：从面板触发 GC</li>
+</ul>
+<p>这类操作适合：</p>
+<ul>
+<li>排查高峰期卡顿</li>
+<li>观察堆占用变化</li>
+<li>快速导出线程信息交给技术人员分析</li>
+</ul>
+<hr>
+<h2>控制台页</h2>
+<p>控制台页当前支持：</p>
+<ul>
+<li>远程执行命令</li>
+<li>查看历史命令</li>
+<li>实时日志流</li>
+<li>按 <code>INFO / WARN / ERROR</code> 过滤</li>
+<li>关键字过滤</li>
+</ul>
+<p>适合：</p>
+<ul>
+<li>快速运维</li>
+<li>远程查看日志</li>
+<li>不方便直接连 SSH 时做紧急处理</li>
+</ul>
+<hr>
+<h2>备份管理页</h2>
+<p>当前 <strong>备份管理</strong> 页支持：</p>
+<ul>
+<li>按世界名称创建备份</li>
+<li>查看备份列表</li>
+<li>执行恢复</li>
+</ul>
+<p>常见用法：</p>
+<ol>
+<li>对活动世界操作前先备份</li>
+<li>做大规模内容调整前先备份</li>
+<li>配合多世界管理，按世界分批维护</li>
+</ol>
+<hr>
+<h2>建议的排障顺序</h2>
+<p>如果服务器出现异常波动，建议顺序：</p>
+<ol>
+<li>仪表盘观察 TPS / MSPT / CPU / 内存</li>
+<li>进入控制台看近期错误日志</li>
+<li>进入系统诊断查看内存快照与线程转储</li>
+<li>如涉及世界数据风险，先在备份页做备份</li>
+</ol>
+<hr>
+<h2>相关页面</h2>
+<ul>
+<li><a href="./commands.md">命令与日常运维</a></li>
+<li><a href="./integrations-and-worlds.md">集成与世界管理</a></li>
+</ul>
+</article>
+    </div>
+  </div>
+  </body>
+</html>

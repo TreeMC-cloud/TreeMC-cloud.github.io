@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="从模块职责视角看当前 TreeCore 的整体构成。" />
+    <meta name="keywords" content="TreeCore,TreeMC,我的世界核心,Minecraft 服务端核心,Minecraft server core,Paper,Folia,Paper 核心,Folia 核心,高性能 Minecraft,Web 管理面板,系统架构总览,技术视角,TreeCore 文档,TreeMC 文档" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="author" content="TreeMC-cloud" />
+    <meta name="theme-color" content="#6fb53d" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="TreeCore" />
+    <meta property="og:title" content="系统架构总览 | TreeCore 官方网站" />
+    <meta property="og:description" content="从模块职责视角看当前 TreeCore 的整体构成。" />
+    <meta property="og:url" content="https://treemc-cloud.github.io/docs/system-overview/" />
+    <meta property="og:image" content="https://treemc-cloud.github.io/images/console-preview.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="系统架构总览 | TreeCore 官方网站" />
+    <meta name="twitter:description" content="从模块职责视角看当前 TreeCore 的整体构成。" />
+    <meta name="twitter:image" content="https://treemc-cloud.github.io/images/console-preview.png" />
+    <link rel="canonical" href="https://treemc-cloud.github.io/docs/system-overview/" />
+    <title>系统架构总览 | TreeCore 官方网站</title>
+    <link rel="icon" href="/images/console-preview.png" />
+    <script>
+      ;(() => {
+        const { hash } = window.location
+        if (hash.startsWith('#/')) {
+          const target = hash.slice(1)
+          window.history.replaceState(null, '', target)
+        }
+      })()
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "TreeCore",
+        "alternateName": ["TreeMC", "TreeCore 官方网站"],
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Java 21+",
+        "url": "https://treemc-cloud.github.io/",
+        "description": "TreeCore 是面向我的世界 / Minecraft 服务器场景的高性能服务端核心，聚焦 Paper、Folia、Web 管理、诊断、资源包链路与技术文档。",
+        "keywords": "TreeCore, TreeMC, 我的世界核心, Minecraft 服务端核心, Paper, Folia",
+        "publisher": {
+          "@type": "Organization",
+          "name": "TreeMC-cloud"
+        }
+      }
+    </script>
+    <script type="module" crossorigin src="/assets/index-CR4xc3Xv.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BEBSowld.css">
+  </head>
+  <body>
+    <div id="app">
+    <div class="page-shell container seo-static-page">
+      <div class="doc-breadcrumb">
+        <a href="/docs/">文档首页</a>
+        <span>/</span>
+        <span>技术视角</span>
+      </div>
+      <header class="doc-header surface-card">
+        <div>
+          <span class="card-label">Architecture</span>
+          <h1>系统架构总览</h1>
+          <p>从模块职责视角看当前 TreeCore 的整体构成。</p>
+        </div>
+        <div class="doc-meta">
+          <span>技术视角</span>
+          <span>7 分钟</span>
+        </div>
+      </header>
+      <article class="surface-card doc-article markdown-body"><h1>系统架构总览</h1>
+<p>本页从技术视角描述 TreeCore 当前的主要组成。</p>
+<blockquote>
+<p>说明：这里的模块名和职责，按当前代码结构整理，不是营销层面的概念图。</p>
+</blockquote>
+<hr>
+<h2>核心模块</h2>
+<h3>1. 性能优化引擎</h3>
+<p>主要入口与相关类：</p>
+<ul>
+<li><code>io.papermc.paper.treecore.TreeCore</code></li>
+<li><code>io.papermc.paper.treecore.performance.TreeCoreOptimizer</code></li>
+<li><code>io.papermc.paper.treecore.performance.PaperConfigTuner</code></li>
+<li><code>io.papermc.paper.treecore.performance.ChunkPreloadEngine</code></li>
+<li><code>io.papermc.paper.treecore.performance.TeleportChunkPreloader</code></li>
+<li><code>io.papermc.paper.treecore.performance.PluginAuditor</code></li>
+</ul>
+<p>主要职责：</p>
+<ul>
+<li>动态视距 / 模拟距离</li>
+<li>自动分层预设</li>
+<li>动态网络压缩</li>
+<li>碰撞、漏斗、粒子、广播等压力感知优化</li>
+<li>方向预测区块预载</li>
+<li>远距离传送预热</li>
+</ul>
+<hr>
+<h3>2. Web 管理面板</h3>
+<p>相关类：</p>
+<ul>
+<li><code>io.papermc.paper.treecore.web.TreeCoreWebServer</code></li>
+<li><code>io.papermc.paper.treecore.web.ModWebSocketHub</code></li>
+</ul>
+<p>前端资源目录：</p>
+<ul>
+<li><code>treecore-web/</code></li>
+<li><code>paper-server/src/main/resources/treecore-web/</code></li>
+</ul>
+<p>主要职责：</p>
+<ul>
+<li>对外提供管理面板</li>
+<li>提供资源包、模型、备份、控制台、诊断、集成等 HTTP API</li>
+<li>提供 Mod 侧认证与模型 / 资源哈希相关接口</li>
+</ul>
+<hr>
+<h3>3. 资源包与模型链路</h3>
+<p>相关类：</p>
+<ul>
+<li><code>io.papermc.paper.treecore.pack.ResourcePackGenerator</code></li>
+<li><code>io.papermc.paper.treecore.model.ModelManager</code></li>
+<li><code>io.papermc.paper.treecore.model.ModelLibraryService</code></li>
+<li><code>io.papermc.paper.treecore.model.CraftEngineBridge</code></li>
+</ul>
+<p>主要职责：</p>
+<ul>
+<li>管理模型文件与纹理资源</li>
+<li>处理本地资源包托管与哈希刷新</li>
+<li>配合 CraftEngine 做资源同步</li>
+<li>支持在线玩家资源包推送链路</li>
+</ul>
+<hr>
+<h3>4. 生电与游戏辅助</h3>
+<p>相关类：</p>
+<ul>
+<li><code>io.papermc.paper.treecore.redstone.FakePlayerService</code></li>
+<li><code>io.papermc.paper.treecore.effect.EffectManager</code></li>
+<li><code>io.papermc.paper.treecore.ui.TpsBarManager</code></li>
+</ul>
+<p>主要职责：</p>
+<ul>
+<li>假人系统</li>
+<li>红石热点数据与回放</li>
+<li>粒子特效管理</li>
+<li>TPS BossBar 展示</li>
+</ul>
+<hr>
+<h3>5. 插件桥接层</h3>
+<p>相关类：</p>
+<ul>
+<li><code>io.papermc.paper.treecore.integration.ItemsAdderBridge</code></li>
+<li><code>io.papermc.paper.treecore.integration.ItemsAdderMenuConfig</code></li>
+<li><code>io.papermc.paper.treecore.integration.MultiverseBridge</code></li>
+<li><code>io.papermc.paper.treecore.model.CraftEngineBridge</code></li>
+</ul>
+<p>主要职责：</p>
+<ul>
+<li>对接 ItemsAdder</li>
+<li>对接 Multiverse</li>
+<li>对接 CraftEngine</li>
+</ul>
+<hr>
+<h2>运行时关系（简化理解）</h2>
+<pre><code class="language-text">玩家 / 运维
+   ↓
+TreeCore 命令 + Web 面板
+   ↓
+TreeCore 核心服务
+   ├─ 性能优化引擎
+   ├─ 资源包 / 模型链路
+   ├─ 假人 / 粒子 / BossBar
+   ├─ 集成桥接层
+   └─ 诊断 / 备份 / 控制台 API
+</code></pre>
+<hr>
+<h2>技术阅读建议</h2>
+<p>如果你是偏技术维护者，建议阅读顺序：</p>
+<ol>
+<li><code>TreeCore</code></li>
+<li><code>TreeCoreConfig</code></li>
+<li><code>TreeCoreOptimizer</code></li>
+<li><code>TreeCoreWebServer</code></li>
+<li>模型 / 资源包 / 集成相关类</li>
+</ol>
+<hr>
+<h2>相关页面</h2>
+<ul>
+<li><a href="../reference/configuration.md">配置参考</a></li>
+<li><a href="../development/web-ui-pipeline.md">Web 资源同步机制</a></li>
+</ul>
+</article>
+    </div>
+  </div>
+  </body>
+</html>

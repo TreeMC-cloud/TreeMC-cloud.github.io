@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="把测试服 / 正式服第一次上线时要确认的动作列成清单。" />
+    <meta name="keywords" content="TreeCore,TreeMC,我的世界核心,Minecraft 服务端核心,Minecraft server core,Paper,Folia,Paper 核心,Folia 核心,高性能 Minecraft,Web 管理面板,首次上线检查清单,入门,TreeCore 文档,TreeMC 文档" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="author" content="TreeMC-cloud" />
+    <meta name="theme-color" content="#6fb53d" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="TreeCore" />
+    <meta property="og:title" content="首次上线检查清单 | TreeCore 官方网站" />
+    <meta property="og:description" content="把测试服 / 正式服第一次上线时要确认的动作列成清单。" />
+    <meta property="og:url" content="https://treemc-cloud.github.io/docs/first-day-checklist/" />
+    <meta property="og:image" content="https://treemc-cloud.github.io/images/console-preview.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="首次上线检查清单 | TreeCore 官方网站" />
+    <meta name="twitter:description" content="把测试服 / 正式服第一次上线时要确认的动作列成清单。" />
+    <meta name="twitter:image" content="https://treemc-cloud.github.io/images/console-preview.png" />
+    <link rel="canonical" href="https://treemc-cloud.github.io/docs/first-day-checklist/" />
+    <title>首次上线检查清单 | TreeCore 官方网站</title>
+    <link rel="icon" href="/images/console-preview.png" />
+    <script>
+      ;(() => {
+        const { hash } = window.location
+        if (hash.startsWith('#/')) {
+          const target = hash.slice(1)
+          window.history.replaceState(null, '', target)
+        }
+      })()
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "TreeCore",
+        "alternateName": ["TreeMC", "TreeCore 官方网站"],
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Java 21+",
+        "url": "https://treemc-cloud.github.io/",
+        "description": "TreeCore 是面向我的世界 / Minecraft 服务器场景的高性能服务端核心，聚焦 Paper、Folia、Web 管理、诊断、资源包链路与技术文档。",
+        "keywords": "TreeCore, TreeMC, 我的世界核心, Minecraft 服务端核心, Paper, Folia",
+        "publisher": {
+          "@type": "Organization",
+          "name": "TreeMC-cloud"
+        }
+      }
+    </script>
+    <script type="module" crossorigin src="/assets/index-CR4xc3Xv.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BEBSowld.css">
+  </head>
+  <body>
+    <div id="app">
+    <div class="page-shell container seo-static-page">
+      <div class="doc-breadcrumb">
+        <a href="/docs/">文档首页</a>
+        <span>/</span>
+        <span>入门</span>
+      </div>
+      <header class="doc-header surface-card">
+        <div>
+          <span class="card-label">Checklist</span>
+          <h1>首次上线检查清单</h1>
+          <p>把测试服 / 正式服第一次上线时要确认的动作列成清单。</p>
+        </div>
+        <div class="doc-meta">
+          <span>入门</span>
+          <span>4 分钟</span>
+        </div>
+      </header>
+      <article class="surface-card doc-article markdown-body"><h1>首次上线检查清单</h1>
+<p>这页适合在你第一次把 TreeCore 上到测试服或正式服时逐项确认。</p>
+<hr>
+<h2>启动前</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Java 版本已确认是 <strong>21+</strong></li>
+<li><input disabled="" type="checkbox"> 已准备好足够内存（建议 8GB 起步）</li>
+<li><input disabled="" type="checkbox"> 关键插件名单已整理好，准备做兼容验证</li>
+<li><input disabled="" type="checkbox"> 已确认服务器目录可写（需要生成 <code>treecore.json</code> 与运行时网页目录）</li>
+</ul>
+<hr>
+<h2>第一次启动后</h2>
+<ul>
+<li><input disabled="" type="checkbox"> <code>treecore.json</code> 已生成</li>
+<li><input disabled="" type="checkbox"> <code>treecore-web/</code> 已生成</li>
+<li><input disabled="" type="checkbox"> <code>/tc</code> 能正常显示帮助</li>
+<li><input disabled="" type="checkbox"> <code>/tc perf</code> 能输出性能状态</li>
+<li><input disabled="" type="checkbox"> <code>/tc tpsbar</code> 能正常切换 BossBar</li>
+</ul>
+<hr>
+<h2>Web 面板检查</h2>
+<ul>
+<li><input disabled="" type="checkbox"> 本机能打开 <code>http://127.0.0.1:8080</code></li>
+<li><input disabled="" type="checkbox"> 仪表盘能刷新 TPS / MSPT / CPU / 内存</li>
+<li><input disabled="" type="checkbox"> 控制台能执行命令并看到实时日志</li>
+<li><input disabled="" type="checkbox"> 诊断页能生成线程转储</li>
+<li><input disabled="" type="checkbox"> 备份页能读取备份列表</li>
+</ul>
+<hr>
+<h2>如果你要开放远程 Web</h2>
+<ul>
+<li><input disabled="" type="checkbox"> 已设置 <code>webAllowRemote = true</code></li>
+<li><input disabled="" type="checkbox"> 已设置 <code>webBindAddress = 0.0.0.0</code></li>
+<li><input disabled="" type="checkbox"> 已设置 <code>webRequireAuth = true</code></li>
+<li><input disabled="" type="checkbox"> 已设置足够强的 <code>webAdminToken</code></li>
+<li><input disabled="" type="checkbox"> 已确认防火墙 / 面板 / 反代规则</li>
+</ul>
+<hr>
+<h2>如果你要启用资源包链路</h2>
+<ul>
+<li><input disabled="" type="checkbox"> 已确认是使用 <strong>本地 ZIP</strong> 还是 <strong>外部 URL</strong></li>
+<li><input disabled="" type="checkbox"> 如果用本地 ZIP，已测试上传与重载 SHA-1</li>
+<li><input disabled="" type="checkbox"> 已测试对在线玩家执行远程下发</li>
+<li><input disabled="" type="checkbox"> 已确认资源包下载地址可达</li>
+</ul>
+<hr>
+<h2>如果你是综合服 / 内容服</h2>
+<ul>
+<li><input disabled="" type="checkbox"> 已检查 CraftEngine 状态</li>
+<li><input disabled="" type="checkbox"> 已检查 Multiverse 世界列表</li>
+<li><input disabled="" type="checkbox"> 已检查 ItemsAdder 编辑器是否能读取菜单</li>
+<li><input disabled="" type="checkbox"> 已验证模型 / 纹理上传流程</li>
+</ul>
+<hr>
+<h2>如果你是生电 / 压力服</h2>
+<ul>
+<li><input disabled="" type="checkbox"> 先用默认配置跑一轮</li>
+<li><input disabled="" type="checkbox"> 再按需观察是否需要开启红石热点保护</li>
+<li><input disabled="" type="checkbox"> 确认漏斗与热点相关配置是否符合玩法预期</li>
+<li><input disabled="" type="checkbox"> 使用 <code>/tc perftest</code> 或真实场景压测验证高峰表现</li>
+</ul>
+<hr>
+<h2>相关页面</h2>
+<ul>
+<li><a href="./quick-start.md">快速开始</a></li>
+<li><a href="./web-panel.md">Web 面板访问</a></li>
+<li><a href="../reference/configuration.md">配置参考</a></li>
+</ul>
+</article>
+    </div>
+  </div>
+  </body>
+</html>
