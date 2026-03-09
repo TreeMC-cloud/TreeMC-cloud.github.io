@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="TreeCore">
+  <defs>
+    <linearGradient id="treecore-g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#9dde66"/>
+      <stop offset="100%" stop-color="#d8a04b"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="12" fill="#1b2216"/>
+  <rect x="4" y="4" width="56" height="56" rx="10" fill="url(#treecore-g)"/>
+  <g fill="none" stroke="#fffbe1" stroke-width="4.5" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M32 14v36"/>
+    <path d="M16 22h32"/>
+    <path d="M20 34h24"/>
+    <path d="M24 46h16"/>
+  </g>
+</svg>
