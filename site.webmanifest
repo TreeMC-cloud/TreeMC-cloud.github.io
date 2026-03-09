@@ -3,8 +3,8 @@
   "short_name": "TreeCore",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#13180f",
-  "theme_color": "#6fb53d",
+  "background_color": "#0f1328",
+  "theme_color": "#0f1328",
   "icons": [
     {
       "src": "/favicon.svg",
