@@ -3,23 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="了解默认监听地址、远程访问和鉴权配置。" />
-    <meta name="keywords" content="TreeCore,TreeMC,我的世界核心,Minecraft 服务端核心,Minecraft server core,Paper,Folia,Paper 核心,Folia 核心,高性能 Minecraft,Web 管理面板,Web 面板访问,入门,TreeCore 文档,TreeMC 文档" />
+    <meta name="description" content="了解默认监听地址、远程访问和鉴权配置。 — TreeCore / TreeMC 官方技术文档，面向 Minecraft 服务端运维与开发。" />
+    <meta name="keywords" content="TreeCore,TreeMC,我的世界核心,Minecraft 服务端核心,Minecraft server core,Paper,Folia,Paper 核心,Folia 核心,高性能 Minecraft,Web 管理面板,Minecraft 开服,我的世界开服,MC 服务端,MC 核心下载,Minecraft 服务器管理,Web 面板访问,入门,TreeCore 文档,TreeMC 文档,Minecraft 文档" />
     <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
     <meta name="author" content="TreeMC-cloud" />
     <meta name="theme-color" content="#78c689" />
+    <meta name="google" content="notranslate" />
+    <link rel="alternate" hreflang="zh-CN" href="https://treemc-cloud.github.io/docs/web-panel/" />
+    <link rel="alternate" hreflang="x-default" href="https://treemc-cloud.github.io/docs/web-panel/" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="TreeCore" />
-    <meta property="og:title" content="Web 面板访问 | TreeCore 官方网站" />
-    <meta property="og:description" content="了解默认监听地址、远程访问和鉴权配置。" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:site_name" content="TreeCore 官方网站" />
+    <meta property="og:title" content="Web 面板访问 | TreeCore 技术文档 - Minecraft 服务端" />
+    <meta property="og:description" content="了解默认监听地址、远程访问和鉴权配置。 — TreeCore / TreeMC 官方技术文档，面向 Minecraft 服务端运维与开发。" />
     <meta property="og:url" content="https://treemc-cloud.github.io/docs/web-panel/" />
     <meta property="og:image" content="https://treemc-cloud.github.io/images/console-preview.png" />
+    <meta property="og:image:width" content="1897" />
+    <meta property="og:image:height" content="836" />
+    <meta property="og:image:alt" content="TreeCore Web 管理面板预览" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Web 面板访问 | TreeCore 官方网站" />
-    <meta name="twitter:description" content="了解默认监听地址、远程访问和鉴权配置。" />
+    <meta name="twitter:title" content="Web 面板访问 | TreeCore 技术文档 - Minecraft 服务端" />
+    <meta name="twitter:description" content="了解默认监听地址、远程访问和鉴权配置。 — TreeCore / TreeMC 官方技术文档，面向 Minecraft 服务端运维与开发。" />
     <meta name="twitter:image" content="https://treemc-cloud.github.io/images/console-preview.png" />
     <link rel="canonical" href="https://treemc-cloud.github.io/docs/web-panel/" />
-    <title>Web 面板访问 | TreeCore 官方网站</title>
+    <title>Web 面板访问 | TreeCore 技术文档 - Minecraft 服务端</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="manifest" href="/site.webmanifest" />
     <script>
@@ -34,22 +41,129 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "TreeCore",
-        "alternateName": ["TreeMC", "TreeCore 官方网站"],
-        "applicationCategory": "DeveloperApplication",
-        "operatingSystem": "Java 21+",
-        "url": "https://treemc-cloud.github.io/",
-        "description": "TreeCore 是面向我的世界 / Minecraft 服务器场景的高性能服务端核心，聚焦 Paper、Folia、Web 管理、诊断、资源包链路与技术文档。",
-        "keywords": "TreeCore, TreeMC, 我的世界核心, Minecraft 服务端核心, Paper, Folia",
-        "publisher": {
-          "@type": "Organization",
-          "name": "TreeMC-cloud"
-        }
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://treemc-cloud.github.io/#organization",
+            "name": "TreeMC-cloud",
+            "alternateName": ["TreeMC", "TreeCore"],
+            "url": "https://treemc-cloud.github.io/",
+            "logo": "https://treemc-cloud.github.io/favicon.svg",
+            "sameAs": [
+              "https://github.com/TreeMC-cloud",
+              "https://github.com/TreeMC-cloud/Tree"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://treemc-cloud.github.io/#website",
+            "name": "TreeCore 官方网站",
+            "alternateName": ["TreeMC 官网", "TreeCore 官网"],
+            "url": "https://treemc-cloud.github.io/",
+            "publisher": { "@id": "https://treemc-cloud.github.io/#organization" },
+            "inLanguage": "zh-CN",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://treemc-cloud.github.io/docs?keyword={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
+            }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "TreeCore",
+            "alternateName": ["TreeMC", "TreeCore 服务端核心"],
+            "applicationCategory": "GameApplication",
+            "applicationSubCategory": "Minecraft Server Software",
+            "operatingSystem": "Java 21+",
+            "url": "https://treemc-cloud.github.io/",
+            "downloadUrl": "https://treemc-cloud.github.io/downloads/",
+            "description": "TreeCore 是面向我的世界 / Minecraft 服务器场景的高性能服务端核心，基于 Paper / Folia 生态，聚焦 TPS 优化、Web 管理面板、诊断工具、资源包链路与技术文档。适合生存服、综合服、内容服等各类 Minecraft 服务器开服与运维。",
+            "keywords": "TreeCore, TreeMC, 我的世界核心, Minecraft 服务端核心, Paper, Folia, MC 开服, Minecraft 服务器",
+            "publisher": { "@id": "https://treemc-cloud.github.io/#organization" },
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "CNY"
+            }
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://treemc-cloud.github.io/#webpage",
+            "url": "https://treemc-cloud.github.io/",
+            "name": "TreeCore | 我的世界 / Minecraft 高性能服务端核心 - 官方网站",
+            "isPartOf": { "@id": "https://treemc-cloud.github.io/#website" },
+            "about": { "@type": "Thing", "name": "Minecraft 服务端核心" },
+            "description": "TreeCore 官方网站首页，提供 Minecraft 高性能服务端核心下载、技术文档、Web 管理面板介绍、更新日志与社区支持入口。",
+            "inLanguage": "zh-CN",
+            "breadcrumb": {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "首页", "item": "https://treemc-cloud.github.io/" }
+              ]
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "TreeCore 是什么？",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "TreeCore 是面向我的世界 / Minecraft 服务器场景的高性能服务端核心，基于 Paper / Folia 生态构建，提供动态视距、自动分层、Web 管理面板、资源包链路、诊断工具等能力，适合生存服、综合服、内容服等各类 Minecraft 服务器。"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "TreeCore 和 Paper / Folia 是什么关系？",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "TreeCore 基于 Paper / Folia 生态构建，在其基础上增加了性能调优、Web 管理面板、资源包链路、诊断工具等面向服主的运维能力。"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "TreeCore 怎么下载？",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "可以在 TreeCore 官网下载页查看最新版本，也可以直接访问 GitHub Releases 页面获取构建文件。"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "TreeCore 支持哪些 Minecraft 版本？",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "TreeCore 需要 Java 21+ 运行环境，具体支持的 Minecraft 版本请查看官网下载页和技术文档。"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "TreeCore 有 Web 管理面板吗？",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "有。TreeCore 内置 Web 管理面板，包含控制台、诊断、备份、资源包管理、世界管理、集成状态等 11 个页签，支持远程运维。"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "TreeCore 是免费的吗？",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "是的，TreeCore 是免费开源的 Minecraft 服务端核心，源码托管在 GitHub。"
+                }
+              }
+            ]
+          }
+        ]
       }
     </script>
-    <script type="module" crossorigin src="/assets/index-YMAz0-ti.js"></script>
+    <script type="module" crossorigin src="/assets/index-b4oGtNx_.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-BBns_bnt.css">
+      <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Web 面板访问","description":"了解默认监听地址、远程访问和鉴权配置。 — TreeCore / TreeMC 官方技术文档，面向 Minecraft 服务端运维与开发。","url":"https://treemc-cloud.github.io/docs/web-panel/","isPartOf":{"@id":"https://treemc-cloud.github.io/#website"},"inLanguage":"zh-CN","author":{"@id":"https://treemc-cloud.github.io/#organization"},"publisher":{"@id":"https://treemc-cloud.github.io/#organization"},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://treemc-cloud.github.io/"},{"@type":"ListItem","position":2,"name":"技术文档","item":"https://treemc-cloud.github.io/docs/"},{"@type":"ListItem","position":3,"name":"入门","item":"https://treemc-cloud.github.io/docs/"},{"@type":"ListItem","position":4,"name":"Web 面板访问","item":"https://treemc-cloud.github.io/docs/web-panel/"}]}}]}</script>
   </head>
   <body>
     <div id="app">
@@ -57,13 +171,15 @@
       <div class="doc-breadcrumb">
         <a href="/docs/">文档首页</a>
         <span>/</span>
-        <span>入门</span>
+        <a href="/docs/">入门</a>
+        <span>/</span>
+        <span>Web 面板访问</span>
       </div>
       <header class="doc-header surface-card">
         <div>
           <span class="card-label">Access</span>
           <h1>Web 面板访问</h1>
-          <p>了解默认监听地址、远程访问和鉴权配置。</p>
+          <p>了解默认监听地址、远程访问和鉴权配置。 — TreeCore / TreeMC 官方技术文档，面向 Minecraft 服务端运维与开发。</p>
         </div>
         <div class="doc-meta">
           <span>入门</span>
