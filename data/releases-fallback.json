@@ -68,7 +68,7 @@
         "state": "uploaded",
         "size": 97814271,
         "digest": "sha256:518932bccaef5e5f098e79734b0d547f022bab89d903c207be1e2f969cc278aa",
-        "download_count": 0,
+        "download_count": 1,
         "created_at": "2026-03-10T05:19:05Z",
         "updated_at": "2026-03-10T05:23:03Z",
         "browser_download_url": "https://github.com/TreeMC-cloud/Tree/releases/download/dev-0.0.9/TreeCore-Dev-0.0.9.jar"
